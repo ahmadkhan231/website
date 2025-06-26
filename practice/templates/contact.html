@@ -1,0 +1,94 @@
+
+{% extends "base.html" %}
+
+{% block title %}Contact Us - S-E-C Agency{% endblock %}
+
+{% block content %}
+<section style="padding:3rem 0;">
+    <div class="container">
+        <h1 style="text-align:center;margin-bottom:3rem;">Contact Us</h1>
+        
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;">
+            <div>
+                <h3 style="margin-bottom:1.5rem;">Get in Touch</h3>
+                <div style="margin-bottom:1.5rem;">
+                    <strong>📞 Phone:</strong><br>
+                    +1-800-HAJJ-UMRAH<br>
+                    +1-555-123-4567
+                </div>
+                <div style="margin-bottom:1.5rem;">
+                    <strong>✉️ Email:</strong><br>
+                    info@sec-agency.com<br>
+                    bookings@sec-agency.com
+                </div>
+                <div style="margin-bottom:1.5rem;">
+                    <strong>📍 Address:</strong><br>
+                    123 Pilgrimage Avenue<br>
+                    Suite 456<br>
+                    New York, NY 10001
+                </div>
+                <div>
+                    <strong>🕒 Office Hours:</strong><br>
+                    Monday - Friday: 9:00 AM - 6:00 PM<br>
+                    Saturday: 10:00 AM - 4:00 PM<br>
+                    Sunday: Closed
+                </div>
+            </div>
+            
+            <div>
+                <h3 style="margin-bottom:1.5rem;">Send us a Message</h3>
+                <form id="contactForm">
+                    <div style="margin-bottom:1rem;">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" required style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:5px;margin-top:0.25rem;">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label for="contactEmail">Email *</label>
+                        <input type="email" id="contactEmail" required style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:5px;margin-top:0.25rem;">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label for="contactPhone">Phone</label>
+                        <input type="tel" id="contactPhone" style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:5px;margin-top:0.25rem;">
+                    </div>
+                    <div style="margin-bottom:1rem;">
+                        <label for="subject">Subject</label>
+                        <select id="subject" style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:5px;margin-top:0.25rem;">
+                            <option value="">Select a topic</option>
+                            <option value="hajj">Hajj Inquiry</option>
+                            <option value="umrah">Umrah Inquiry</option>
+                            <option value="booking">Booking Question</option>
+                            <option value="support">Customer Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom:1.5rem;">
+                        <label for="message">Message *</label>
+                        <textarea id="message" required rows="5" style="width:100%;padding:0.75rem;border:1px solid #ddd;border-radius:5px;margin-top:0.25rem;font-family:inherit;"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width:100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Simple form validation
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('contactEmail').value;
+    const message = document.getElementById('message').value;
+    
+    if (name && email && message) {
+        alert('Thank you for your message! We will get back to you within 24 hours.');
+        this.reset();
+    } else {
+        alert('Please fill in all required fields.');
+    }
+});
+</script>
+{% endblock %}

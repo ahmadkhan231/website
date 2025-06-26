@@ -1,0 +1,43 @@
+
+{% extends "base.html" %}
+
+{% block title %}Upload Documents - S-E-C Agency{% endblock %}
+
+{% block content %}
+<section style="padding:3rem 0;">
+    <div class="container">
+        <h1 style="text-align:center;margin-bottom:3rem;">Upload Documents</h1>
+        
+        <div style="max-width:600px;margin:0 auto;">
+            <form method="POST" enctype="multipart/form-data" style="background:#f8f9fa;padding:2rem;border-radius:10px;">
+                <div style="margin-bottom:1.5rem;">
+                    <label for="customer_id" style="display:block;margin-bottom:0.5rem;font-weight:bold;">Customer ID:</label>
+                    <input type="text" id="customer_id" name="customer_id" required style="width:100%;padding:0.5rem;border:1px solid #ddd;border-radius:5px;">
+                </div>
+                
+                <div style="margin-bottom:1.5rem;">
+                    <label for="passport" style="display:block;margin-bottom:0.5rem;font-weight:bold;">Passport Copy:</label>
+                    <input type="file" id="passport" name="passport" accept=".pdf,.jpg,.jpeg,.png" style="width:100%;padding:0.5rem;border:1px solid #ddd;border-radius:5px;">
+                </div>
+                
+                <div style="margin-bottom:1.5rem;">
+                    <label for="visa" style="display:block;margin-bottom:0.5rem;font-weight:bold;">Visa Documents:</label>
+                    <input type="file" id="visa" name="visa" accept=".pdf,.jpg,.jpeg,.png" style="width:100%;padding:0.5rem;border:1px solid #ddd;border-radius:5px;">
+                </div>
+                
+                <div style="margin-bottom:1.5rem;">
+                    <label for="photo" style="display:block;margin-bottom:0.5rem;font-weight:bold;">Passport Photo:</label>
+                    <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png" style="width:100%;padding:0.5rem;border:1px solid #ddd;border-radius:5px;">
+                </div>
+                
+                <div style="margin-bottom:1.5rem;">
+                    <label for="medical" style="display:block;margin-bottom:0.5rem;font-weight:bold;">Medical Certificate:</label>
+                    <input type="file" id="medical" name="medical" accept=".pdf,.jpg,.jpeg,.png" style="width:100%;padding:0.5rem;border:1px solid #ddd;border-radius:5px;">
+                </div>
+                
+                <button type="submit" class="btn" style="width:100%;">Upload Documents</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

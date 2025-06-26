@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}S-E-C Agency - Your trusted partner for Hajj and Umrah pilgrimage services{% endblock %}">
+    <title>{% block title %}S-E-C Agency - Hajj & Umrah Specialists{% endblock %}</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}" as="style">
+
+    <!-- Critical CSS inlined for faster loading -->
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:Arial,sans-serif;line-height:1.6;color:#333}
+        .container{max-width:1200px;margin:0 auto;padding:0 20px}
+        header{background:#2c5530;color:white;padding:1rem 0}
+        nav ul{list-style:none;display:flex;flex-wrap:wrap}
+        nav li{margin-right:2rem}
+        nav a{color:white;text-decoration:none;font-weight:500}
+        .hero{background:linear-gradient(rgba(44,85,48,0.8),rgba(44,85,48,0.8)),url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f0f0" width="1200" height="600"/></svg>');color:white;text-align:center;padding:4rem 0}
+        .btn{display:inline-block;background:#d4af37;color:white;padding:12px 24px;text-decoration:none;border-radius:5px;font-weight:bold;border:none;cursor:pointer}
+        .btn:hover{background:#b8941f}
+        @media (max-width:768px){nav ul{flex-direction:column}nav li{margin:0.5rem 0}.hero{padding:2rem 0}}
+    </style>
+
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></noscript>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <h1>🕋 S-E-C Agency</h1>
+                </div>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('services') }}">Services</a></li>
+                    <li><a href="{{ url_for('packages') }}">Packages</a></li>
+                    <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                    <li><a href="{{ url_for('upload_documents') }}">Documents</a></li>
+                    <li><a href="{{ url_for('chat') }}">Live Chat</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    <li><a href="{{ url_for('admin_payments') }}">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer style="background:#2c5530;color:white;text-align:center;padding:2rem 0;margin-top:3rem;">
+        <div class="container">
+            <p>&copy; 2024 S-E-C Agency. All rights reserved.</p>
+            <p>📞 +1-800-HAJJ-UMRAH | ✉️ info@sacredjourney.com</p>
+        </div>
+    </footer>
+
+    <!-- Load JavaScript only when needed -->
+    {% block scripts %}{% endblock %}
+</body>
+</html>

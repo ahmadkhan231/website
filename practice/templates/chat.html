@@ -1,0 +1,62 @@
+
+{% extends "base.html" %}
+
+{% block title %}Live Chat - S-E-C Agency{% endblock %}
+
+{% block content %}
+<section style="padding:3rem 0;">
+    <div class="container">
+        <h1 style="text-align:center;margin-bottom:3rem;">Live Chat Support</h1>
+        
+        <div style="max-width:800px;margin:0 auto;">
+            <div id="chatContainer" style="background:white;border:1px solid #ddd;border-radius:10px;height:400px;overflow-y:auto;padding:1rem;margin-bottom:1rem;">
+                <div class="chat-message" style="margin-bottom:1rem;padding:0.5rem;background:#f8f9fa;border-radius:5px;">
+                    <strong>Support Agent:</strong> Welcome to S-E-C Agency! How can we help you today?
+                </div>
+            </div>
+            
+            <div style="display:flex;gap:1rem;">
+                <input type="text" id="messageInput" placeholder="Type your message..." style="flex:1;padding:0.5rem;border:1px solid #ddd;border-radius:5px;">
+                <button onclick="sendMessage()" class="btn">Send</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function sendMessage() {
+    const input = document.getElementById('messageInput');
+    const message = input.value.trim();
+    
+    if (message) {
+        const chatContainer = document.getElementById('chatContainer');
+        
+        // Add user message
+        const userMessage = document.createElement('div');
+        userMessage.className = 'chat-message';
+        userMessage.style.cssText = 'margin-bottom:1rem;padding:0.5rem;background:#d4af37;color:white;border-radius:5px;text-align:right;';
+        userMessage.innerHTML = `<strong>You:</strong> ${message}`;
+        chatContainer.appendChild(userMessage);
+        
+        // Auto-reply (in real implementation, this would connect to a chat service)
+        setTimeout(() => {
+            const autoReply = document.createElement('div');
+            autoReply.className = 'chat-message';
+            autoReply.style.cssText = 'margin-bottom:1rem;padding:0.5rem;background:#f8f9fa;border-radius:5px;';
+            autoReply.innerHTML = '<strong>Support Agent:</strong> Thank you for your message. One of our agents will respond shortly. For immediate assistance, please call +1-800-HAJJ-UMRAH.';
+            chatContainer.appendChild(autoReply);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }, 1000);
+        
+        input.value = '';
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+}
+
+document.getElementById('messageInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+</script>
+{% endblock %}

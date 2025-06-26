@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+
+{% block title %}Admin Documents - S-E-C Agency{% endblock %}
+
+{% block content %}
+<section style="padding:3rem 0;">
+    <div class="container">
+        <h1 style="text-align:center;margin-bottom:3rem;">Document Management</h1>
+        
+        <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;">
+                <thead style="background:#2c5530;color:white;">
+                    <tr>
+                        <th style="padding:1rem;text-align:left;">Customer ID</th>
+                        <th style="padding:1rem;text-align:left;">Document Type</th>
+                        <th style="padding:1rem;text-align:left;">Original Filename</th>
+                        <th style="padding:1rem;text-align:left;">Upload Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doc in documents %}
+                    <tr style="border-bottom:1px solid #eee;">
+                        <td style="padding:1rem;">{{ doc.customer_id }}</td>
+                        <td style="padding:1rem;">{{ doc.document_type.title() }}</td>
+                        <td style="padding:1rem;">{{ doc.original_filename }}</td>
+                        <td style="padding:1rem;">{{ doc.upload_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

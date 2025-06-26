@@ -1,0 +1,145 @@
+
+{% extends "base.html" %}
+
+{% block title %}Hajj & Umrah Packages - S-E-C Agency{% endblock %}
+
+{% block content %}
+<section style="padding:3rem 0;">
+    <div class="container">
+        <h1 style="text-align:center;margin-bottom:3rem;">Our Packages</h1>
+        
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem;">
+            <!-- Hajj Packages -->
+            <div style="background:white;border:2px solid #2c5530;border-radius:10px;padding:2rem;">
+                <div style="background:#2c5530;color:white;padding:1rem;margin:-2rem -2rem 2rem -2rem;border-radius:8px 8px 0 0;">
+                    <h3>🕋 Hajj Premium Package</h3>
+                    <div style="font-size:2rem;font-weight:bold;">$4,999</div>
+                </div>
+                <ul style="list-style:none;padding:0;">
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ Round-trip airfare</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ 5-star hotel near Haram</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ All meals included</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ Expert guide</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ Transportation</li>
+                    <li style="padding:0.5rem 0;">✓ 24/7 support</li>
+                </ul>
+                <button onclick="bookPackage('Hajj Premium')" class="btn" style="width:100%;margin-top:1rem;">Book Now</button>
+            </div>
+
+            <div style="background:white;border:2px solid #d4af37;border-radius:10px;padding:2rem;">
+                <div style="background:#d4af37;color:white;padding:1rem;margin:-2rem -2rem 2rem -2rem;border-radius:8px 8px 0 0;">
+                    <h3>🕌 Umrah Deluxe Package</h3>
+                    <div style="font-size:2rem;font-weight:bold;">$1,899</div>
+                </div>
+                <ul style="list-style:none;padding:0;">
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ Round-trip airfare</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ 4-star hotel</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ Daily breakfast</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ Group guide</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ Airport transfers</li>
+                    <li style="padding:0.5rem 0;">✓ 7-14 days duration</li>
+                </ul>
+                <button onclick="bookPackage('Umrah Deluxe')" class="btn" style="width:100%;margin-top:1rem;">Book Now</button>
+            </div>
+
+            <div style="background:white;border:2px solid #666;border-radius:10px;padding:2rem;">
+                <div style="background:#666;color:white;padding:1rem;margin:-2rem -2rem 2rem -2rem;border-radius:8px 8px 0 0;">
+                    <h3>🕌 Umrah Economy Package</h3>
+                    <div style="font-size:2rem;font-weight:bold;">$999</div>
+                </div>
+                <ul style="list-style:none;padding:0;">
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ Round-trip airfare</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ 3-star hotel</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ Basic support</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ Airport transfers</li>
+                    <li style="padding:0.5rem 0;border-bottom:1px solid #eee;">✓ 5-7 days duration</li>
+                    <li style="padding:0.5rem 0;">✓ Group arrangements</li>
+                </ul>
+                <button onclick="bookPackage('Umrah Economy')" class="btn" style="width:100%;margin-top:1rem;">Book Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Modal -->
+<div id="bookingModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;">
+    <div style="background:white;margin:10% auto;padding:2rem;max-width:500px;border-radius:10px;">
+        <h3>Book Your Package</h3>
+        <form id="bookingForm">
+            <div style="margin:1rem 0;">
+                <label>Full Name:</label>
+                <input type="text" id="fullName" required style="width:100%;padding:0.5rem;border:1px solid #ddd;border-radius:5px;">
+            </div>
+            <div style="margin:1rem 0;">
+                <label>Email:</label>
+                <input type="email" id="email" required style="width:100%;padding:0.5rem;border:1px solid #ddd;border-radius:5px;">
+            </div>
+            <div style="margin:1rem 0;">
+                <label>Phone:</label>
+                <input type="tel" id="phone" required style="width:100%;padding:0.5rem;border:1px solid #ddd;border-radius:5px;">
+            </div>
+            <div style="margin:1rem 0;">
+                <label>Package:</label>
+                <input type="text" id="packageType" readonly style="width:100%;padding:0.5rem;border:1px solid #ddd;border-radius:5px;background:#f8f9fa;">
+            </div>
+            <div style="text-align:right;">
+                <button type="button" onclick="closeModal()" style="background:#666;color:white;padding:0.5rem 1rem;border:none;border-radius:5px;margin-right:1rem;cursor:pointer;">Cancel</button>
+                <button type="submit" class="btn">Submit Booking</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function bookPackage(packageName) {
+    document.getElementById('packageType').value = packageName;
+    document.getElementById('bookingModal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('bookingModal').style.display = 'none';
+}
+
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        package: document.getElementById('packageType').value
+    };
+    
+    fetch('/book', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // Store payment data in session storage
+            sessionStorage.setItem('customerName', data.payment_data.customer_name);
+            sessionStorage.setItem('customerEmail', data.payment_data.customer_email);
+            sessionStorage.setItem('packageType', data.payment_data.package_type);
+            sessionStorage.setItem('paymentAmount', data.payment_data.amount);
+            
+            // Redirect to payment page
+            window.location.href = '/payment';
+        }
+    })
+    .catch(error => {
+        alert('There was an error submitting your request. Please try again.');
+    });
+});
+
+// Close modal when clicking outside
+document.getElementById('bookingModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+</script>
+{% endblock %}
